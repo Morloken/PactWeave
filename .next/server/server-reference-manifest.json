@@ -1,104 +1,96 @@
 {
   "node": {
-    "3e7645a6e022b3e87ec55477ec8f123ecf8cb30f": {
-      "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/pacts/page": "rsc"
-      }
-    },
     "0d45f6cd577928ff27923e078e0d97703f8f578b": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "4e4d68fe8fdf69330abdeda301fb9dbd686d5c29": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "52a4f87e9ec2a854d73b09a8a30fbe156c1a00ee": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "6c491387ddbec8c81240356e30ac53860c130f5c": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "6f18d8cc3322956e44b6fb253246f9fc0f35c7e8": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "85281712e533adc3b3a1fbab00c0a17da904cda4": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "962eef43c111f4c0fa3dcca434d8a1f26a362b7a": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "ceb462a80d9e186382f8cceae0613acad544060a": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     },
     "e5d5963e2a5e38e3a47625ae1e1c0e297d170c2f": {
       "workers": {
-        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Capp%5C%5Cpacts%5C%5Cpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
-        "app/pacts/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=true!"
+        "app/pacts/[pactId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!",
+        "app/pacts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cn-book%5C%5CDocuments%5C%5CGitHub%5C%5CPactWeave%5C%5Clib%5C%5Cactions%5C%5Cpact.ts%22%2C%5B%22cancelPact%22%2C%22sendPactInvite%22%2C%22createPact%22%2C%22signPact%22%2C%22updatePact%22%2C%22getPactByInviteToken%22%2C%22getMyPacts%22%2C%22joinPact%22%2C%22getPact%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/pacts/page": "rsc",
-        "app/pacts/new/page": "action-browser"
+        "app/pacts/[pactId]/page": "rsc",
+        "app/pacts/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "AtMdzih6zVSiCAAgb7QyARFQvOxgoqdLUGJWiVebxVY="
+  "encryptionKey": "7ryp8rL4znOOf66HtoKCTs+lvjU1Xt9cvTJRcN1j6Ko="
 }
