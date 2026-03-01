@@ -1,12 +1,10 @@
 'use server';
 
 import { auth } from '@/auth';
-import { connectDB, Pact, User } from '@/lib/db';
+import { supabase, CustomField, Pact } from '@/lib/supabase';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import crypto from 'crypto';
-import mongoose from 'mongoose';
 
 const CustomFieldSchema = z.object({
   fieldId: z.string().uuid(),
@@ -21,14 +19,13 @@ const CreatePactSchema = z.object({
   customFields: z.array(CustomFieldSchema).default([]),
 });
 
-type CreatePactInput = z.infer<typeof CreatePactSchema>;
-
 const UpdatePactSchema = z.object({
   pactId: z.string(),
   title: z.string().min(1).max(200).optional(),
   customFields: z.array(CustomFieldSchema).optional(),
 });
 
+type CreatePactInput = z.infer<typeof CreatePactSchema>;
 type UpdatePactInput = z.infer<typeof UpdatePactSchema>;
 
 async function verifySession() {
@@ -36,20 +33,38 @@ async function verifySession() {
   if (!session || !(session.user as { id?: string })?.id) {
     throw new Error('Unauthorized');
   }
-  return session as unknown as { user: { id: string } };
+  return session as unknown as { user: { id: string; email?: string; name?: string; image?: string } };
 }
 
-async function verifyPactAccess(pactId: string, userId: string) {
-  const pact = await Pact.findById(pactId);
-  if (!pact) {
+async function verifyPactAccess(pactId: string, userId: string): Promise<Pact> {
+  const { data: pact, error } = await supabase
+    .from('pacts')
+    .select('*')
+    .eq('id', pactId)
+    .single();
+
+  if (error || !pact) {
     throw new Error('Pact not found');
   }
-  const initiatorId = pact.initiatorId.toString();
-  const counterpartyId = pact.counterpartyId?.toString();
-  if (initiatorId !== userId && counterpartyId !== userId) {
+
+  if (pact.initiator_id !== userId && pact.counterparty_id !== userId) {
     throw new Error('Forbidden');
   }
+
   return pact;
+}
+
+function sanitizePact(pact: Pact) {
+  return {
+    _id: pact.id,
+    initiatorId: pact.initiator_id,
+    counterpartyId: pact.counterparty_id,
+    title: pact.title,
+    status: pact.status,
+    customFields: pact.custom_fields as CustomField[],
+    createdAt: pact.created_at,
+    updatedAt: pact.updated_at,
+  };
 }
 
 export async function createPact(formData: CreatePactInput) {
@@ -57,20 +72,26 @@ export async function createPact(formData: CreatePactInput) {
   
   const validated = CreatePactSchema.parse(formData);
 
-  await connectDB();
+  const { data: pact, error } = await supabase
+    .from('pacts')
+    .insert({
+      initiator_id: session.user.id,
+      title: validated.title,
+      status: 'Draft',
+      custom_fields: validated.customFields,
+      counterparty_id: null,
+      invite_token: null,
+    })
+    .select()
+    .single();
 
-  const pact = await Pact.create({
-    _id: new mongoose.Types.ObjectId(),
-    initiatorId: new mongoose.Types.ObjectId(session.user.id),
-    title: validated.title,
-    status: 'Draft',
-    customFields: validated.customFields,
-    counterpartyId: null,
-    inviteToken: null,
-  });
+  if (error) {
+    console.error('Error creating pact:', error);
+    throw new Error('Failed to create pact');
+  }
 
   revalidatePath('/pacts');
-  return { success: true, pactId: pact._id.toString() };
+  return { success: true, pactId: pact.id };
 }
 
 export async function updatePact(formData: UpdatePactInput) {
@@ -78,23 +99,29 @@ export async function updatePact(formData: UpdatePactInput) {
   
   const validated = UpdatePactSchema.parse(formData);
 
-  await connectDB();
-
   const pact = await verifyPactAccess(validated.pactId, session.user.id);
 
   if (pact.status === 'Signed' || pact.status === 'Resolved' || pact.status === 'Cancelled') {
     throw new Error('Cannot modify signed, resolved or cancelled pacts');
   }
 
-  if (pact.status !== 'Draft' && session.user.id !== pact.initiatorId.toString()) {
+  if (pact.status !== 'Draft' && pact.initiator_id !== session.user.id) {
     throw new Error('Only initiator can edit in Draft status');
   }
 
   const updateData: Record<string, unknown> = {};
   if (validated.title) updateData.title = validated.title;
-  if (validated.customFields) updateData.customFields = validated.customFields;
+  if (validated.customFields) updateData.custom_fields = validated.customFields;
 
-  await Pact.findByIdAndUpdate(validated.pactId, { $set: updateData });
+  const { error } = await supabase
+    .from('pacts')
+    .update(updateData)
+    .eq('id', validated.pactId);
+
+  if (error) {
+    console.error('Error updating pact:', error);
+    throw new Error('Failed to update pact');
+  }
 
   revalidatePath('/pacts');
   revalidatePath(`/pacts/${validated.pactId}`);
@@ -104,26 +131,30 @@ export async function updatePact(formData: UpdatePactInput) {
 export async function sendPactInvite(pactId: string) {
   const session = await verifySession();
   
-  await connectDB();
-
   const pact = await verifyPactAccess(pactId, session.user.id);
 
   if (pact.status !== 'Draft') {
     throw new Error('Can only invite from Draft status');
   }
 
-  if (pact.initiatorId.toString() !== session.user.id) {
+  if (pact.initiator_id !== session.user.id) {
     throw new Error('Only initiator can send invites');
   }
 
   const inviteToken = crypto.randomBytes(32).toString('hex');
 
-  await Pact.findByIdAndUpdate(pactId, {
-    $set: {
-      inviteToken,
+  const { error } = await supabase
+    .from('pacts')
+    .update({
+      invite_token: inviteToken,
       status: 'Pending',
-    },
-  });
+    })
+    .eq('id', pactId);
+
+  if (error) {
+    console.error('Error sending invite:', error);
+    throw new Error('Failed to send invite');
+  }
 
   revalidatePath('/pacts');
   revalidatePath(`/pacts/${pactId}`);
@@ -133,27 +164,36 @@ export async function sendPactInvite(pactId: string) {
 export async function joinPact(pactId: string) {
   const session = await verifySession();
   
-  await connectDB();
+  const { data: pact, error: fetchError } = await supabase
+    .from('pacts')
+    .select('*')
+    .eq('id', pactId)
+    .single();
 
-  const pact = await Pact.findById(pactId);
-  if (!pact) {
+  if (fetchError || !pact) {
     throw new Error('Pact not found');
   }
 
-  if (pact.counterpartyId) {
+  if (pact.counterparty_id) {
     throw new Error('Pact already has a counterparty');
   }
 
-  if (pact.initiatorId.toString() === session.user.id) {
+  if (pact.initiator_id === session.user.id) {
     throw new Error('Cannot join your own pact');
   }
 
-  const result = await Pact.findByIdAndUpdate(pactId, {
-    $set: {
-      counterpartyId: new mongoose.Types.ObjectId(session.user.id),
-      inviteToken: null,
-    },
-  });
+  const { error } = await supabase
+    .from('pacts')
+    .update({
+      counterparty_id: session.user.id,
+      invite_token: null,
+    })
+    .eq('id', pactId);
+
+  if (error) {
+    console.error('Error joining pact:', error);
+    throw new Error('Failed to join pact');
+  }
 
   revalidatePath('/pacts');
   revalidatePath(`/pacts/${pactId}`);
@@ -163,22 +203,26 @@ export async function joinPact(pactId: string) {
 export async function signPact(pactId: string) {
   const session = await verifySession();
   
-  await connectDB();
-
   const pact = await verifyPactAccess(pactId, session.user.id);
 
   if (pact.status !== 'Pending') {
     throw new Error('Can only sign pacts in Pending status');
   }
 
-  const isCounterparty = pact.counterpartyId?.toString() === session.user.id;
+  const isCounterparty = pact.counterparty_id === session.user.id;
   if (!isCounterparty) {
     throw new Error('Only counterparty can sign the pact');
   }
 
-  await Pact.findByIdAndUpdate(pactId, {
-    $set: { status: 'Signed' },
-  });
+  const { error } = await supabase
+    .from('pacts')
+    .update({ status: 'Signed' })
+    .eq('id', pactId);
+
+  if (error) {
+    console.error('Error signing pact:', error);
+    throw new Error('Failed to sign pact');
+  }
 
   revalidatePath('/pacts');
   revalidatePath(`/pacts/${pactId}`);
@@ -188,21 +232,25 @@ export async function signPact(pactId: string) {
 export async function cancelPact(pactId: string) {
   const session = await verifySession();
   
-  await connectDB();
-
   const pact = await verifyPactAccess(pactId, session.user.id);
 
   if (pact.status === 'Signed' || pact.status === 'Resolved') {
     throw new Error('Cannot cancel signed or resolved pacts');
   }
 
-  if (pact.status === 'Pending' && pact.initiatorId.toString() !== session.user.id) {
+  if (pact.status === 'Pending' && pact.initiator_id !== session.user.id) {
     throw new Error('Only initiator can cancel pending pacts');
   }
 
-  await Pact.findByIdAndUpdate(pactId, {
-    $set: { status: 'Cancelled' },
-  });
+  const { error } = await supabase
+    .from('pacts')
+    .update({ status: 'Cancelled' })
+    .eq('id', pactId);
+
+  if (error) {
+    console.error('Error cancelling pact:', error);
+    throw new Error('Failed to cancel pact');
+  }
 
   revalidatePath('/pacts');
   revalidatePath(`/pacts/${pactId}`);
@@ -212,28 +260,26 @@ export async function cancelPact(pactId: string) {
 export async function getPact(pactId: string) {
   const session = await verifySession();
   
-  await connectDB();
-
   const pact = await verifyPactAccess(pactId, session.user.id);
 
-  const sanitized = {
-    _id: pact._id.toString(),
-    initiatorId: pact.initiatorId.toString(),
-    counterpartyId: pact.counterpartyId?.toString() || null,
-    title: pact.title,
-    status: pact.status,
-    customFields: pact.customFields,
-    createdAt: pact.createdAt,
-    updatedAt: pact.updatedAt,
-  };
+  const { data: initiator } = await supabase
+    .from('profiles')
+    .select('name, image')
+    .eq('id', pact.initiator_id)
+    .single();
 
-  const initiator = await User.findById(pact.initiatorId).select('name image').lean();
-  const counterparty = pact.counterpartyId 
-    ? await User.findById(pact.counterpartyId).select('name image').lean()
-    : null;
+  let counterparty = null;
+  if (pact.counterparty_id) {
+    const { data } = await supabase
+      .from('profiles')
+      .select('name, image')
+      .eq('id', pact.counterparty_id)
+      .single();
+    counterparty = data;
+  }
 
   return {
-    ...sanitized,
+    ...sanitizePact(pact),
     initiator: initiator ? { name: initiator.name, image: initiator.image } : null,
     counterparty: counterparty ? { name: counterparty.name, image: counterparty.image } : null,
   };
@@ -242,39 +288,45 @@ export async function getPact(pactId: string) {
 export async function getMyPacts() {
   const session = await verifySession();
   
-  await connectDB();
+  const { data: pacts, error } = await supabase
+    .from('pacts')
+    .select('id, title, status, created_at, updated_at')
+    .or(`initiator_id.eq.${session.user.id},counterparty_id.eq.${session.user.id}`)
+    .order('updated_at', { ascending: false });
 
-  const pacts = await Pact.find({
-    $or: [
-      { initiatorId: new mongoose.Types.ObjectId(session.user.id) },
-      { counterpartyId: new mongoose.Types.ObjectId(session.user.id) },
-    ],
-  })
-  .sort({ updatedAt: -1 })
-  .lean();
+  if (error) {
+    console.error('Error fetching pacts:', error);
+    throw new Error('Failed to fetch pacts');
+  }
 
-  return pacts.map((pact) => ({
-    _id: pact._id.toString(),
+  return pacts.map((pact: { id: string; title: string; status: string; created_at: string; updated_at: string }) => ({
+    _id: pact.id,
     title: pact.title,
     status: pact.status,
-    createdAt: pact.createdAt,
-    updatedAt: pact.updatedAt,
+    createdAt: pact.created_at,
+    updatedAt: pact.updated_at,
   }));
 }
 
 export async function getPactByInviteToken(token: string) {
-  await connectDB();
+  const { data: pact, error } = await supabase
+    .from('pacts')
+    .select('id, title, status, initiator_id')
+    .eq('invite_token', token)
+    .single();
 
-  const pact = await Pact.findOne({ inviteToken: token }).lean();
-
-  if (!pact) {
+  if (error || !pact) {
     throw new Error('Pact not found or invite is invalid');
   }
 
-  const initiator = await User.findById(pact.initiatorId).select('name image').lean();
+  const { data: initiator } = await supabase
+    .from('profiles')
+    .select('name, image')
+    .eq('id', pact.initiator_id)
+    .single();
 
   return {
-    _id: pact._id.toString(),
+    _id: pact.id,
     title: pact.title,
     status: pact.status,
     initiator: initiator ? { name: initiator.name, image: initiator.image } : null,

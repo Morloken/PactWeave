@@ -1,17 +1,6 @@
-import { Container, Title, Text, Button, Paper, Group, Badge, Stack, Card } from '@mantine/core';
 import { getPact } from '@/lib/actions/pact';
 import { auth } from '@/auth';
-import Link from 'next/link';
 import PactDetailClient from './PactDetailClient';
-
-const statusColors: Record<string, string> = {
-  Draft: 'gray',
-  Pending: 'yellow',
-  Signed: 'green',
-  Disputed: 'red',
-  Resolved: 'blue',
-  Cancelled: 'dark',
-};
 
 interface Props {
   params: { pactId: string };
@@ -22,9 +11,9 @@ export default async function PactDetailPage({ params }: Props) {
   
   if (!session) {
     return (
-      <Container size="md" py="xl">
-        <Text>Будь ласка, увійдіть для перегляду угоди</Text>
-      </Container>
+      <div className="max-w-2xl mx-auto py-12 px-4">
+        <p>Будь ласка, увійдіть для перегляду угоди</p>
+      </div>
     );
   }
 
@@ -35,9 +24,9 @@ export default async function PactDetailPage({ params }: Props) {
     pact = await getPact(params.pactId);
   } catch {
     return (
-      <Container size="md" py="xl">
-        <Text>Угода не знайдена</Text>
-      </Container>
+      <div className="max-w-2xl mx-auto py-12 px-4">
+        <p>Угода не знайдена</p>
+      </div>
     );
   }
 

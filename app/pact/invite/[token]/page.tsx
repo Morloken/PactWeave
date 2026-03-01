@@ -1,8 +1,5 @@
-import { Container, Title, Text, Button, Paper, Center } from '@mantine/core';
-import { getPactByInviteToken, joinPact } from '@/lib/actions/pact';
+import { getPactByInviteToken } from '@/lib/actions/pact';
 import { auth } from '@/auth';
-import { signIn } from 'next-auth/react';
-import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import InviteClient from './InviteClient';
 
@@ -18,60 +15,39 @@ export default async function InvitePage({ params }: Props) {
     pact = await getPactByInviteToken(params.token);
   } catch {
     return (
-      <Container size="sm" py="xl">
-        <Paper withBorder shadow="md" p="xl" radius="md">
-          <Title order={2} ta="center" c="red">Запрошення недійсне</Title>
-          <Text c="dimmed" ta="center" mt="md">
+      <div className="max-w-sm mx-auto py-12 px-4">
+        <div className="border rounded-lg shadow-md p-8">
+          <h2 className="text-2xl font-bold text-center text-red-600">Запрошення недійсне</h2>
+          <p className="text-gray-500 text-center mt-4">
             Це запрошення більше не дійсне або було використано.
-          </Text>
-          <Center mt="xl">
-            <Link href="/">
-              <Button>На головну</Button>
+          </p>
+          <div className="flex justify-center mt-6">
+            <Link href="/" className="bg-violet-600 hover:bg-violet-700 text-white font-medium py-2 px-6 rounded-lg">
+              На головну
             </Link>
-          </Center>
-        </Paper>
-      </Container>
-    );
-  }
-
-  if (!session) {
-    return (
-      <Container size="sm" py="xl">
-        <Paper withBorder shadow="md" p="xl" radius="md">
-          <Title order={2} ta="center">Вхід до PactWeave</Title>
-          <Text c="dimmed" ta="center" mt="md">
-            Увійдіть, щоб приєднатися до угоди
-          </Text>
-          <Center mt="xl">
-            <form action={async () => {
-              'use server';
-              await signIn('google', { redirectTo: `/pact/invite/${params.token}` });
-            }}>
-              <Button type="submit">Увійти через Google</Button>
-            </form>
-          </Center>
-        </Paper>
-      </Container>
+          </div>
+        </div>
+      </div>
     );
   }
 
   if (pact.status !== 'Pending') {
     return (
-      <Container size="sm" py="xl">
-        <Paper withBorder shadow="md" p="xl" radius="md">
-          <Title order={2} ta="center" c="red">Угода недоступна</Title>
-          <Text c="dimmed" ta="center" mt="md">
+      <div className="max-w-sm mx-auto py-12 px-4">
+        <div className="border rounded-lg shadow-md p-8">
+          <h2 className="text-2xl font-bold text-center text-red-600">Угода недоступна</h2>
+          <p className="text-gray-500 text-center mt-4">
             Ця угода більше не приймає нових учасників (статус: {pact.status})
-          </Text>
-          <Center mt="xl">
-            <Link href="/">
-              <Button>На головну</Button>
+          </p>
+          <div className="flex justify-center mt-6">
+            <Link href="/" className="bg-violet-600 hover:bg-violet-700 text-white font-medium py-2 px-6 rounded-lg">
+              На головну
             </Link>
-          </Center>
-        </Paper>
-      </Container>
+          </div>
+        </div>
+      </div>
     );
   }
 
-  return <InviteClient pact={pact} />;
+  return <InviteClient pact={pact} token={params.token} />;
 }
