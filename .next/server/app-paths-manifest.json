@@ -1,7 +1,6 @@
 {
-  "/auth/signin/page": "app/auth/signin/page.js",
-  "/page": "app/page.js",
+  "/auth/callback/page": "app/auth/callback/page.js",
   "/pacts/page": "app/pacts/page.js",
-  "/pacts/[pactId]/page": "app/pacts/[pactId]/page.js",
-  "/auth/callback/page": "app/auth/callback/page.js"
+  "/page": "app/page.js",
+  "/auth/signin/page": "app/auth/signin/page.js"
 }
