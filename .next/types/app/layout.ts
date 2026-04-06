@@ -1,4 +1,4 @@
-// File: C:\Users\n-book\Documents\GitHub\PactWeave\app\layout.tsx
+// File: C:\Users\user1\Documents\GitHub\PactWeave\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
