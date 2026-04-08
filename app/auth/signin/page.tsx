@@ -93,10 +93,6 @@ export default function SignInPage() {
             Увійти через Google
           </button>
         </div>
-
-        <p className="relative text-center text-slate-500 text-sm mt-6">
-          Увійшовши, ви погоджуєтесь з правилами гри
-        </p>
       </div>
     </div>
   );

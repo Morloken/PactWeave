@@ -1,5 +1,7 @@
 {
   "/pacts/page": "app/pacts/page.js",
   "/pacts/[pactId]/page": "app/pacts/[pactId]/page.js",
-  "/pacts/new/page": "app/pacts/new/page.js"
+  "/pacts/new/page": "app/pacts/new/page.js",
+  "/page": "app/page.js",
+  "/auth/signin/page": "app/auth/signin/page.js"
 }
