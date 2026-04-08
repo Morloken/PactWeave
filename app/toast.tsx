@@ -18,12 +18,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     <ToastContext.Provider value={{ showToast }}>
       {children}
       {toast.show && (
-        <div className="fixed bottom-4 right-4 z-50 animate-fade-in">
-          <div className="bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-2">
+        <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-5 py-3.5 rounded-xl shadow-lg shadow-emerald-500/30 flex items-center gap-3 border border-emerald-400/30">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
             </svg>
-            {toast.message}
+            <span className="font-semibold">{toast.message}</span>
           </div>
         </div>
       )}

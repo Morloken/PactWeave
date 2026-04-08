@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
-import { Plus, X, ArrowLeft, Loader2 } from 'lucide-react';
+import { Plus, X, ArrowLeft, Loader2, Sparkles, FileText } from 'lucide-react';
 import { useToast } from '@/app/toast';
 
 interface CustomField {
@@ -62,114 +62,116 @@ export default function NewPactPage() {
   };
 
   return (
-    <div>
-      <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
-        <div className="px-4 lg:px-8 py-4">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => router.back()}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <h1 className="text-xl font-semibold text-gray-900">Створити угоду</h1>
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => router.push('/pacts')}
+          className="p-2 hover:bg-violet-500/15 rounded-lg transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 text-violet-300" />
+        </button>
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+            <FileText className="w-4 h-4 text-white" />
           </div>
+          <h1 className="text-lg font-semibold text-white">Створити угоду</h1>
         </div>
-      </header>
+      </div>
 
-      <main className="p-4 lg:p-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-8">
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Назва угоди
-                </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Введіть назву угоди"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-600 focus:border-transparent outline-none transition-all"
-                />
-              </div>
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-violet-500/10 p-8">
+        <div className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-violet-200/80 mb-2">
+              Назва угоди
+            </label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Введіть назву угоди"
+              className="w-full px-4 py-3 rounded-lg border border-violet-500/20 focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 outline-none transition-all bg-slate-900/50 text-white placeholder-slate-500 text-sm"
+            />
+          </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Поля угоди
-                </label>
-                
-                <div className="space-y-3">
-                  {fields.map((field, index) => (
-                    <div key={field.fieldId} className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
-                      <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div>
+            <label className="block text-sm font-medium text-violet-200/80 mb-3">
+              Поля угоди
+            </label>
+            
+            <div className="space-y-3">
+              {fields.map((field, index) => (
+                <div key={field.fieldId} className="flex items-start gap-4 p-5 rounded-lg bg-slate-900/40 border border-violet-500/5">
+                  <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input
+                      type="text"
+                      value={field.name}
+                      onChange={(e) => updateField(index, 'name', e.target.value)}
+                      placeholder="Назва поля"
+                      className="px-4 py-3 rounded-lg border border-violet-500/20 focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 outline-none transition-all bg-slate-900/50 text-white placeholder-slate-500"
+                    />
+                    <select
+                      value={field.type}
+                      onChange={(e) => updateField(index, 'type', e.target.value)}
+                      className="px-4 py-3 rounded-lg border border-violet-500/20 focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 outline-none transition-all bg-slate-900/50 text-white"
+                    >
+                      <option value="text">Текст</option>
+                      <option value="number">Число</option>
+                      <option value="date">Дата</option>
+                      <option value="boolean">Так/Ні</option>
+                      <option value="currency">Валюта</option>
+                    </select>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <div className="relative">
                         <input
-                          type="text"
-                          value={field.name}
-                          onChange={(e) => updateField(index, 'name', e.target.value)}
-                          placeholder="Назва поля"
-                          className="px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-600 focus:border-transparent outline-none"
+                          type="checkbox"
+                          checked={field.isRequired}
+                          onChange={(e) => updateField(index, 'isRequired', e.target.checked)}
+                          className="sr-only peer"
                         />
-                        <select
-                          value={field.type}
-                          onChange={(e) => updateField(index, 'type', e.target.value)}
-                          className="px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-600 focus:border-transparent outline-none"
-                        >
-                          <option value="text">Текст</option>
-                          <option value="number">Число</option>
-                          <option value="date">Дата</option>
-                          <option value="boolean">Так/Ні</option>
-                          <option value="currency">Валюта</option>
-                        </select>
-                        <label className="flex items-center gap-2">
-                          <input
-                            type="checkbox"
-                            checked={field.isRequired}
-                            onChange={(e) => updateField(index, 'isRequired', e.target.checked)}
-                            className="w-4 h-4 text-violet-600 rounded focus:ring-violet-600"
-                          />
-                          <span className="text-sm text-gray-600">Обов&apos;язкове</span>
-                        </label>
+                        <div className="w-10 h-5 bg-slate-700 rounded-full peer-checked:bg-violet-600 transition-colors"></div>
+                        <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transform transition-transform peer-checked:translate-x-5"></div>
                       </div>
-                      <button
-                        onClick={() => removeField(index)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </div>
-                  ))}
+                      <span className="text-sm text-slate-300">Обов&apos;язкове</span>
+                    </label>
+                  </div>
+                  <button
+                    onClick={() => removeField(index)}
+                    className="p-2.5 text-red-400/70 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
                 </div>
-
-                <button
-                  onClick={addField}
-                  className="mt-4 w-full py-4 border-2 border-dashed border-violet-300 text-violet-600 rounded-lg hover:bg-violet-50 transition-colors flex items-center justify-center gap-2"
-                >
-                  <Plus className="w-5 h-5" />
-                  Додати поле
-                </button>
-              </div>
-
-              <div className="flex justify-end gap-3 pt-4">
-                <button
-                  onClick={() => router.back()}
-                  className="px-6 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  Скасувати
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50"
-                >
-                  {loading && <Loader2 className="w-5 h-5 animate-spin" />}
-                  Створити угоду
-                </button>
-              </div>
+              ))}
             </div>
+
+            <button
+              onClick={addField}
+              className="mt-4 w-full py-4 border-2 border-dashed border-violet-500/20 text-violet-400/70 hover:text-violet-400 hover:border-violet-500/40 hover:bg-violet-500/5 rounded-lg transition-all flex items-center justify-center gap-2 font-medium"
+            >
+              <Plus className="w-5 h-5" />
+              Додати поле
+            </button>
+          </div>
+
+          <div className="flex justify-end gap-4 pt-4">
+            <button
+              onClick={() => router.push('/pacts')}
+              className="px-6 py-3 text-slate-300 hover:bg-slate-700/40 rounded-lg transition-colors font-medium"
+            >
+              Скасувати
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white rounded-lg transition-all font-medium flex items-center gap-2 disabled:opacity-50 shadow-md shadow-violet-500/15"
+            >
+              {loading && <Loader2 className="w-5 h-5 animate-spin" />}
+              <Sparkles className="w-5 h-5" />
+              Створити угоду
+            </button>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
